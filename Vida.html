@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Eu te amo vida ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    font-family: Georgia, serif;
+}
+
+#frase {
+    font-size: 90px;
+    color: #ff4d6d;
+    text-align: center;
+}
+
+.palavra {
+    opacity: 0;
+    display: inline-block;
+    transform: translateY(20px);
+    transition: all 1s ease;
+    margin: 0 25px; /* 👈 espaço entre as palavras */
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="frase"></h1>
+
+<script>
+window.onload = function() {
+    const texto = ["EU", "TE", "AMO", "VIDA ❤️"];
+    const container = document.getElementById("frase");
+
+    texto.forEach((palavra, index) => {
+        let span = document.createElement("span");
+        span.className = "palavra";
+        span.innerText = palavra;
+        container.appendChild(span);
+
+        setTimeout(() => {
+            span.style.opacity = "1";
+            span.style.transform = "translateY(0)";
+        }, index * 800);
+    });
+};
+</script>
+
+</body>
+</html>

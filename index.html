@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Para Mariah ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    text-align: center;
+    background: black;
+    color: white;
+}
+
+/* Tela inicial */
+#entrada {
+    position: absolute;
+    width: 100%;
+    top: 40%;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background: #ff4d6d;
+    color: white;
+}
+
+/* Tela principal */
+#principal {
+    display: none;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #1a1a1a, #400d1a);
+    padding-top: 80px;
+}
+
+#principal h2 {
+    margin-bottom: 25px;
+    font-size: 32px;
+}
+
+#contador {
+    margin-bottom: 80px;
+    font-size: 20px;
+}
+
+/* Envelope */
+.envelope {
+    position: relative;
+    width: 520px;
+    height: 340px;
+    margin: 220px auto;
+    cursor: pointer;
+}
+
+.base {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: absolute;
+    border-radius: 12px;
+}
+
+.tampa {
+    width: 100%;
+    height: 100%;
+    background: #ff4d6d;
+    position: absolute;
+    transform-origin: top;
+    transition: transform 1.5s;
+    clip-path: polygon(0 0, 50% 55%, 100% 0);
+    border-radius: 12px;
+}
+
+.envelope.aberto .tampa {
+    transform: rotateX(180deg);
+}
+
+/* Carta */
+.carta {
+    position: absolute;
+    top: 130px;
+    left: 5%;
+    width: 90%;
+    height: 260px;
+    background: #fff;
+    color: #333;
+    padding: 25px;
+    box-sizing: border-box;
+    transform: translateY(170%);
+    transition: transform 1.5s;
+    overflow-y: auto;
+    font-size: 18px;
+    border-radius: 12px;
+}
+
+.envelope.aberto .carta {
+    transform: translateY(50px);
+}
+
+/* Botão final */
+.botaoFinal {
+    margin-top: -40px; /* sobe o botão */
+    margin-bottom: 60px;
+}
+
+/* Fade escuro */
+#fade {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s;
+}
+</style>
+</head>
+
+<body>
+
+<div id="fade"></div>
+
+<div id="entrada">
+    <h1>a perfeição atrás dessa tela realmente quer entrar?</h1>
+    <button onclick="entrar()">Sim ❤️</button>
+</div>
+
+<div id="principal">
+    <h2>Para Mariah (May) 💖</h2>
+    <h3 id="contador"></h3>
+
+    <div class="envelope" onclick="abrirCarta()" id="envelope">
+        <div class="base"></div>
+        <div class="tampa"></div>
+        <div class="carta">
+            <p id="textoCarta"></p>
+        </div>
+    </div>
+
+    <button class="botaoFinal" onclick="irParaVida()">
+        nunca esqueça disso (clique aqui)
+    </button>
+</div>
+
+<script>
+const texto = `Meu amor, perdão por ser problemático e hoje em específico não ter te dado a atenção q merece...
+
+Mas, obrigado por ser quem é e por estar comigo, o sentido das coisas pra mim mudou com você do meu lado, não tê-la comigo me assusta, me tira meu rumo...
+
+Eu te amo meu amor <3.`;
+
+let cartaJaAberta = false;
+
+function entrar() {
+    document.getElementById("entrada").style.display = "none";
+    document.getElementById("principal").style.display = "block";
+    atualizarContador();
+}
+
+function abrirCarta() {
+    if (cartaJaAberta) return;
+    cartaJaAberta = true;
+
+    let envelope = document.getElementById("envelope");
+    envelope.classList.add("aberto");
+
+    efeitoMaquina();
+}
+
+function efeitoMaquina() {
+    let i = 0;
+    let velocidade = 35;
+    let elemento = document.getElementById("textoCarta");
+    elemento.innerHTML = "";
+
+    function digitar() {
+        if (i < texto.length) {
+            elemento.innerHTML += texto.charAt(i);
+            i++;
+            setTimeout(digitar, velocidade);
+        }
+    }
+    digitar();
+}
+
+function irParaVida() {
+    let fade = document.getElementById("fade");
+    fade.style.opacity = "1";
+    setTimeout(() => {
+        window.location.href = "vida.html";
+    }, 1500);
+}
+
+function atualizarContador() {
+    let inicio = new Date("2026-02-07");
+    let hoje = new Date();
+    let diferenca = hoje - inicio;
+    let dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+
+    document.getElementById("contador").innerText =
+        "Desde 07/02/2026 estamos juntos há " + dias + " dias 💞";
+}
+</script>
+
+</body>
+</html>
