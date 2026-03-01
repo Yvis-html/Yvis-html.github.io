@@ -2,38 +2,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Para sempre ❤️</title>
+<title>Infinito ❤️</title>
 
 <style>
 body {
     margin: 0;
     height: 100vh;
+    background: black;
+    color: #ff4d6d;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: black;
     font-family: Georgia, serif;
     overflow: hidden;
-}
-
-#contador {
-    position: absolute;
-    top: 40px;
-    font-size: 20px;
-    color: white;
-    opacity: 0.7;
+    transition: background 2s ease;
 }
 
 #texto {
+    font-size: 38px;
     text-align: center;
-    font-size: 40px;
-    color: #ff4d6d;
-    opacity: 0;
-    transform: scale(0.8);
+    max-width: 80%;
     transition: all 0.8s ease;
-    padding: 20px;
-    max-width: 90%;
 }
 
 .fade {
@@ -44,76 +33,67 @@ body {
     top: 0;
     left: 0;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transition: opacity 2s ease;
 }
 </style>
 </head>
 
 <body>
 
-<div id="contador">1 / 100</div>
-<div id="texto">eu te amo meu amor ❤️</div>
+<div id="texto"></div>
 <div class="fade" id="fade"></div>
 
 <script>
-let contador = 0;
-let maximo = 100;
+const texto = document.getElementById("texto");
+const fade = document.getElementById("fade");
 
-function mostrarTexto() {
-    const texto = document.getElementById("texto");
-    const fade = document.getElementById("fade");
-    const contadorElemento = document.getElementById("contador");
+let pagina = 1;
+let totalPaginas = 101;
 
-    contador++;
+function mostrarPagina() {
 
-    // Atualiza contador
-    contadorElemento.innerHTML = contador + " / 100";
+    if (pagina >= 1 && pagina <= 5) {
+        texto.innerHTML = "cada momento, cada dia contigo é único, sabia? ❤️";
+    }
 
-    // Aumenta tamanho progressivamente
-    let tamanho = 40 + (contador * 1.5);
-    texto.style.fontSize = tamanho + "px";
+    else if (pagina >= 15 && pagina <= 18) {
+        texto.innerHTML = "saiba que estou sempre contigo, independente do momento sejam eles de queda ou os felizes. ❤️";
+    }
 
-    // Intensifica a cor
-    let intensidade = 77 + contador * 1.5;
-    if (intensidade > 255) intensidade = 255;
-    texto.style.color = "rgb(255," + intensidade + "," + intensidade + ")";
+    else if (pagina >= 20 && pagina <= 23) {
+        texto.innerHTML = "espero que goste desse pequeno mimo, posso não te dar o mundo, mas faria de tudo pra te ver feliz ❤️";
+    }
 
-    texto.style.opacity = "1";
-    texto.style.transform = "scale(1)";
+    else if (pagina === 95) {
+        texto.innerHTML = "espero que tenha gostado desse mimo, eu te amo meu neném ❤️";
+        texto.style.fontSize = "48px";
+    }
 
-    setTimeout(() => {
-        fade.style.opacity = "1";
+    else if (pagina === 101) {
+        document.body.style.background = "#8B0000";
+        texto.innerHTML = "Eu te escolhi e te escolheria outras vezes, faria tudo de novo pra te ter de novo. Eu te amo meu amor ❤️";
+        texto.style.fontSize = "55px";
 
         setTimeout(() => {
-            texto.style.opacity = "0";
-            texto.style.transform = "scale(0.8)";
-            fade.style.opacity = "0";
+            fade.style.opacity = "1";
+        }, 5000);
 
-            if (contador < maximo) {
-                setTimeout(mostrarTexto, 150);
-            } else {
-                finalizar();
-            }
+        return; 
+    }
 
-        }, 700);
+    else {
+        texto.innerHTML = "Eu te amo ❤️";
+        texto.style.fontSize = "38px";
+    }
 
-    }, 700);
+    pagina++;
+
+    if (pagina <= totalPaginas) {
+        setTimeout(mostrarPagina, 250);
+    }
 }
 
-function finalizar() {
-    const texto = document.getElementById("texto");
-    const contadorElemento = document.getElementById("contador");
-
-    contadorElemento.style.display = "none";
-
-    texto.style.fontSize = "55px";
-    texto.style.color = "#ff4d6d";
-    texto.innerHTML = "independente do momento eu escolho você,<br>e sempre será você.<br><br>Eu te amo minha vida ❤️";
-    texto.style.opacity = "1";
-    texto.style.transform = "scale(1)";
-}
-
-window.onload = mostrarTexto;
+mostrarPagina();
 </script>
 
 </body>
