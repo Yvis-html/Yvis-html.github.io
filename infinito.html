@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Eu te amo ❤️</title>
+<title>Para sempre ❤️</title>
 
 <style>
 body {
@@ -33,6 +33,7 @@ body {
     transform: scale(0.8);
     transition: all 0.8s ease;
     padding: 20px;
+    max-width: 90%;
 }
 
 .fade {
@@ -65,14 +66,14 @@ function mostrarTexto() {
 
     contador++;
 
-    // Atualiza contador visual
+    // Atualiza contador
     contadorElemento.innerHTML = contador + " / 100";
 
-    // Aumenta tamanho gradualmente
+    // Aumenta tamanho progressivamente
     let tamanho = 40 + (contador * 1.5);
     texto.style.fontSize = tamanho + "px";
 
-    // Muda cor gradualmente (mais intensa)
+    // Intensifica a cor
     let intensidade = 77 + contador * 1.5;
     if (intensidade > 255) intensidade = 255;
     texto.style.color = "rgb(255," + intensidade + "," + intensidade + ")";
@@ -107,7 +108,7 @@ function finalizar() {
 
     texto.style.fontSize = "55px";
     texto.style.color = "#ff4d6d";
-    texto.innerHTML = "independente do momento eu escolho você, e sempre será você.<br><br>Eu te amo minha vida ❤️";
+    texto.innerHTML = "independente do momento eu escolho você,<br>e sempre será você.<br><br>Eu te amo minha vida ❤️";
     texto.style.opacity = "1";
     texto.style.transform = "scale(1)";
 }
