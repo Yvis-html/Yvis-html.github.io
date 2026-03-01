@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Eu te amo ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    font-family: Georgia, serif;
+    overflow: hidden;
+}
+
+#contador {
+    position: absolute;
+    top: 40px;
+    font-size: 20px;
+    color: white;
+    opacity: 0.7;
+}
+
+#texto {
+    text-align: center;
+    font-size: 40px;
+    color: #ff4d6d;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s ease;
+    padding: 20px;
+}
+
+.fade {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+</style>
+</head>
+
+<body>
+
+<div id="contador">1 / 100</div>
+<div id="texto">eu te amo meu amor ❤️</div>
+<div class="fade" id="fade"></div>
+
+<script>
+let contador = 0;
+let maximo = 100;
+
+function mostrarTexto() {
+    const texto = document.getElementById("texto");
+    const fade = document.getElementById("fade");
+    const contadorElemento = document.getElementById("contador");
+
+    contador++;
+
+    // Atualiza contador visual
+    contadorElemento.innerHTML = contador + " / 100";
+
+    // Aumenta tamanho gradualmente
+    let tamanho = 40 + (contador * 1.5);
+    texto.style.fontSize = tamanho + "px";
+
+    // Muda cor gradualmente (mais intensa)
+    let intensidade = 77 + contador * 1.5;
+    if (intensidade > 255) intensidade = 255;
+    texto.style.color = "rgb(255," + intensidade + "," + intensidade + ")";
+
+    texto.style.opacity = "1";
+    texto.style.transform = "scale(1)";
+
+    setTimeout(() => {
+        fade.style.opacity = "1";
+
+        setTimeout(() => {
+            texto.style.opacity = "0";
+            texto.style.transform = "scale(0.8)";
+            fade.style.opacity = "0";
+
+            if (contador < maximo) {
+                setTimeout(mostrarTexto, 150);
+            } else {
+                finalizar();
+            }
+
+        }, 700);
+
+    }, 700);
+}
+
+function finalizar() {
+    const texto = document.getElementById("texto");
+    const contadorElemento = document.getElementById("contador");
+
+    contadorElemento.style.display = "none";
+
+    texto.style.fontSize = "55px";
+    texto.style.color = "#ff4d6d";
+    texto.innerHTML = "independente do momento eu escolho você, e sempre será você.<br><br>Eu te amo minha vida ❤️";
+    texto.style.opacity = "1";
+    texto.style.transform = "scale(1)";
+}
+
+window.onload = mostrarTexto;
+</script>
+
+</body>
+</html>
